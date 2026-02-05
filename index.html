@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Currículo Moderno</title>
+    <meta name="description" content="Crie seu currículo profissional de forma fácil, rápida e gratuita. Modelos modernos e exportação em PDF.">
+    <meta name="theme-color" content="#1a73e8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="editor">
+         
+        <h2>✍️ Preencha seu Currículo</h2>
+        <div class="campo-foto">
+            <label for="in-foto">Foto de Perfil (Opcional)</label>
+            <input type="file" id="in-foto" accept="image/*">
+        </div>
+        <div class="grid-inputs">
+            <input type="text" id="in-nome" placeholder="Nome Completo" oninput="atualizar()">
+            <input type="text" id="in-cargo" placeholder="Seu Cargo (Ex: Desenvolvedor ou Primeiro Emprego)" oninput="atualizar()">
+            <input type="text" id="in-email" placeholder="E-mail" oninput="atualizar()">
+            <input type="text" id="in-tel" placeholder="Telefone" oninput="atualizar()">
+            <input type="text" id="in-endereco" placeholder="Endereço Completo" oninput="atualizar()">
+            <select id="in-estado-civil" onchange="atualizar()">
+                <option value="" disabled selected>Estado Civil</option>
+                <option value="Solteiro(a)">Solteiro(a)</option>
+                <option value="Casado(a)">Casado(a)</option>
+                <option value="Separado(a)">Separado(a)</option>
+                <option value="Divorciado(a)">Divorciado(a)</option>
+                <option value="Viúvo(a)">Viúvo(a)</option>
+            </select>
+            <input type="text" id="in-nascimento" placeholder="Data de Nascimento (DD/MM/AAAA)" maxlength="10" oninput="mascaraData(this)">
+        </div>_
+        <div class="label-ia">
+            <label>Resumo Profissional</label>
+            <button onclick="gerarResumoIA()" class="btn-ia">✨ Sugestão com IA</button>
+        </div>
+
+        <div id="ia-popup" class="ia-popup">
+            <div class="ia-popup-content">
+                <h3>Selecione uma sugestão</h3>
+                <div id="ia-sugestoes"></div>
+                <button onclick="fecharPopup()" class="btn-ia">Fechar</button>
+            </div>
+        </div>
+        <textarea id="in-resumo" placeholder="Resumo Profissional (Fale sobre suas conquistas)" oninput="atualizar()"></textarea>
+        <div class="label-ia">
+            <label>Experiência Profissional</label>
+            <button onclick="adicionarExperiencia()" class="btn-add" title="Adicionar Nova Experiência">+</button>
+        </div>
+        <div id="container-exp"></div>
+        <div class="label-ia">
+            <label>Formação Acadêmica</label>
+            <button onclick="adicionarFormacao()" class="btn-add" title="Adicionar Nova Formação">+</button>
+        </div>
+        <div id="container-edu"></div>
+
+        <div class="label-ia">
+            <label>Cursos Extracurriculares</label>
+            <button onclick="adicionarCurso()" class="btn-add" title="Adicionar Novo Curso">+</button>
+        </div>
+        <div id="container-cursos"></div>
+
+        <div class="label-ia">
+            <label>Habilidades</label>
+            <button onclick="abrirPopupHabilidades()" class="btn-add" title="Adicionar Habilidade">+</button>
+        </div>
+        <div style="background: #e8f5e9; padding: 10px; border-radius: 5px; font-size: 13px; color: #2e7d32; margin-bottom: 10px; border: 1px solid #c8e6c9;">
+            💡 Dica: clique no botão verde para adicionar suas habilidades
+        </div>
+        <div id="container-habilidades-editor"></div>
+
+        <div id="habilidades-popup" class="ia-popup">
+            <div class="ia-popup-content">
+                <h3>Selecione uma Habilidade</h3>
+                <div id="lista-habilidades-popup" class="grid-popup-habilidades"></div>
+                <button onclick="fecharPopupHabilidades()" class="btn-ia" style="background: #555; margin-top: 15px; width: 100%;">Fechar</button>
+            </div>
+        </div>
+        
+        <h3>Escolha seu modelo</h3>
+        <div class="seletor-modelos">
+            <button onclick="mudarModelo('modelo-moderno')">Moderno</button>
+            <button onclick="mudarModelo('modelo-minimalista')">Minimalista</button>
+            <button onclick="mudarModelo('modelo-vibrante')">Vibrante</button>
+        </div>
+
+        <div class="botoes-acao">
+            <button onclick="exportPDF()" class="btn-download">📥 Baixar PDF</button>
+            <button onclick="compartilharWhatsapp()" class="btn-whatsapp">📱 WhatsApp</button>
+        </div>
+
+        <div class="privacy-notice">
+            <p>🔒 <strong>Sua Privacidade é Prioridade:</strong> Todos os dados inseridos são processados localmente no seu navegador. Nenhuma informação do seu currículo é enviada ou armazenada em nossos servidores.</p>
+        </div>
+    </div>
+
+    <!-- O MODELO MODERNO -->
+    <div id="resume-preview">
+        <aside class="sidebar">
+            <div class="foto-container">
+                <img id="out-foto" src="" alt="Sua Foto">
+            </div>
+            <h1 id="out-nome">NOME SOBRENOME</h1>
+            <p id="out-cargo" class="cargo-txt">Cargo Desejado</p>
+            
+            <div class="contato-section">
+                <h3>CONTATO</h3>
+                <p>📧 <span id="out-email">E-mail</span></p>
+                <p>📞 <span id="out-tel">Telefone</span></p>
+                <p>💍 <span id="out-estado-civil">Estado Civil</span></p>
+                <p>🎂 <span id="out-nascimento">Data de Nascimento</span></p>
+                <p>📍 <span id="out-endereco">Endereço Completo</span></p>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <section>
+                <h3>RESUMO</h3>
+                <p id="out-resumo">Escreva um pouco sobre sua trajetória profissional aqui...</p>
+            </section>
+
+            <section>
+                <h3>EXPERIÊNCIA</h3>
+                <p id="out-exp" style="white-space: pre-line;">Detalhe suas experiências passadas...</p>
+            </section>
+
+            <section>
+                <h3>FORMAÇÃO</h3>
+                <p id="out-edu" style="white-space: pre-line;">Sua jornada acadêmica...</p>
+            </section>
+
+            <section>
+                <h3>CURSOS EXTRACURRICULARES</h3>
+                <p id="out-cursos" style="white-space: pre-line;"></p>
+            </section>
+
+            <section>
+                <h3>HABILIDADES</h3>
+                <ul id="out-habilidades" class="lista-habilidades"></ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- POPUP INTRODUTÓRIO -->
+    <div class="popup-container" id="intro-popup">
+        <div class="popup-card">
+            <div class="icon">📄✨</div>
+            <h1>FAÇA FÁCIL SEU CURRÍCULO</h1>
+            <h1>PELO COMPUTADOR OU PELO CELULAR</h1>
+            <!-- Passo 1 -->
+            <p>1. Comece preenchendo seus <strong>dados básicos</strong>.</p>
+            
+            <!-- Passo 2 -->
+            <p>2. Digite seu <strong>cargo pretendido</strong> e clique no botão abaixo para a IA criar um resumo profissional:</p>
+
+            <!-- Botão com o estilo da imagem -->
+            <button class="btn-ai-suggestion">
+                <span class="ai-icon">✨</span> Sugestão com IA
+            </button>
+
+            <!-- Passo 3 (Novo) -->
+            <p>3. Use o botão <button class="btn-add" style="cursor: default; margin: 0 5px; vertical-align: middle;">+</button> para adicionar quantas <strong>Experiências</strong>, <strong>Cursos</strong> ou <strong>Habilidades</strong> forem necessárias.</p>
+
+            <!-- Passo 4 -->
+            <p>4. Escolha um modelo, baixe em <strong>PDF</strong> ou compartilhe no <strong>Whatsapp</strong>.</p>
+
+            <button class="btn-start" onclick="fecharIntroPopup()">COMEÇAR AGORA</button>
+        </div>
+    </div>
+
+    <!-- BIBLIOTECAS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
