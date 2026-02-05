@@ -421,11 +421,11 @@ function mostrarPopupDoacao(callback) {
                 <div style="margin: 25px 0; padding: 15px; background: #f7f7f7; border-radius: 8px; text-align: left;">
                     <p style="margin: 0 0 10px 0; font-weight: bold; color: #333; text-align: center;">Chave PIX (Copia e Cola):</p>
                     <div style="display: flex; align-items: center; gap: 10px; background: #e9e9e9; padding: 8px; border-radius: 5px;">
-                        <input type="text" id="pix-key-input" value="ecf1bee0-d309-42a7-bca9-f84ce21b4504" readonly style="flex-grow: 1; border: none; background: transparent; font-size: 14px; color: #333;">
+                        <input type="text" id="pix-key-input" value="a7cb8e67-96be-498f-977a-1d60a6804918" readonly style="flex-grow: 1; border: none; background: transparent; font-size: 14px; color: #333;">
                         <button id="btn-copiar-pix" style="padding: 5px 10px; border: none; background: #007AFF; color: white; border-radius: 5px; cursor: pointer;">Copiar</button>
                     </div>
                     <p style="margin: 20px 0 10px 0; font-weight: bold; color: #333; text-align: center;">Ou leia o QR Code:</p>
-                    <img src="qrcode-pix.png" alt="QR Code PIX" style="width: 150px; height: 150px; margin: 0 auto; display: block; border: 1px solid #ddd; background: #fff;">
+                    <img src="qrcode-pix.JPEG" alt="QR Code PIX" style="width: 150px; height: 150px; margin: 0 auto; display: block; border: 1px solid #ddd; background: #fff;">
                 </div>
 
                 <button id="btn-fechar-doacao" class="btn-download" style="background: #4CAF50; border: none; margin-top: 10px;">
