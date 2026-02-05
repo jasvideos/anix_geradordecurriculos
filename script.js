@@ -425,7 +425,7 @@ function mostrarPopupDoacao(callback) {
                         <button id="btn-copiar-pix" style="padding: 5px 10px; border: none; background: #007AFF; color: white; border-radius: 5px; cursor: pointer;">Copiar</button>
                     </div>
                     <p style="margin: 20px 0 10px 0; font-weight: bold; color: #333; text-align: center;">Ou leia o QR Code:</p>
-                    <img src="qrcode-pix.JPEG" alt="QR Code PIX" style="width: 150px; height: 150px; margin: 0 auto; display: block; border: 1px solid #ddd; background: #fff;">
+                    <img src="qrcode-pix.jpeg" alt="QR Code PIX" style="width: 150px; height: 150px; margin: 0 auto; display: block; border: 1px solid #ddd; background: #fff;">
                 </div>
 
                 <button id="btn-fechar-doacao" class="btn-download" style="background: #4CAF50; border: none; margin-top: 10px;">
