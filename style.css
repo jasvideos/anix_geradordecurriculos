@@ -17,8 +17,75 @@ textarea { height: 80px; margin-top: 10px; resize: vertical; }
 #resume-preview { 
     display: flex; width: 210mm; min-height: 297mm; margin: 0 auto; background: white; 
 }
-.sidebar { width: 33%; background: #263238; color: white; padding: 30px; }
+.sidebar { width: 33%; background: #263238; color: white; padding: 30px; transition: all 0.3s ease; }
 .main-content { width: 67%; padding: 40px; color: #333; }
+
+/* Layout de Topo para Moderno e Vibrante */
+.modelo-moderno, .modelo-vibrante {
+    flex-direction: column !important;
+}
+
+.modelo-moderno .sidebar, .modelo-vibrante .sidebar {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+        "foto nome"
+        "foto cargo";
+    column-gap: 40px;
+    row-gap: 0;
+    align-items: center;
+    padding: 30px 40px !important;
+    text-align: left !important;
+}
+
+.modelo-moderno .foto-container, .modelo-vibrante .foto-container {
+    grid-area: foto;
+    margin-bottom: 0;
+}
+
+.modelo-moderno #out-nome, .modelo-vibrante #out-nome {
+    grid-area: nome;
+    margin: 0;
+    font-size: 36px;
+    line-height: 1.2;
+}
+
+.modelo-moderno .cargo-txt, .modelo-vibrante .cargo-txt {
+    grid-area: cargo;
+    margin: 5px 0 0 0;
+    font-size: 20px;
+    color: #fff;
+}
+
+/* Esconde a seção de contato original dentro da sidebar nos modelos Moderno/Vibrante */
+.modelo-moderno .sidebar .contato-section, .modelo-vibrante .sidebar .contato-section {
+    display: none !important;
+}
+
+/* Mostra a seção de contato dentro do main-content apenas para Moderno/Vibrante */
+.contato-main {
+    display: none;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.modelo-moderno .contato-main, .modelo-vibrante .contato-main {
+    display: block; /* Garante a exibição vertical */
+    margin-bottom: 30px;
+}
+
+.contato-main p {
+    margin: 5px 0; /* Espaçamento entre os itens na vertical */
+    font-size: 13px;
+    color: #555;
+}
+
+.modelo-moderno .main-content, .modelo-vibrante .main-content {
+    width: 100% !important;
+    padding: 30px 40px;
+}
 
 .cargo-txt { color: #80cbc4; font-weight: bold; margin-bottom: 40px; }
 h3 { font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 25px; color: #1a73e8; }

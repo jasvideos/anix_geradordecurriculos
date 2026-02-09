@@ -3,14 +3,16 @@ function atualizar() {
     
     campos.forEach(campo => {
         const valor = document.getElementById(`in-${campo}`).value;
-        const output = document.getElementById(`out-${campo}`);
+        const outputs = document.querySelectorAll(`[id^="out-${campo}"]`);
         
-        if (output) {
+        outputs.forEach(output => {
             output.innerText = valor;
-            if (campo === 'resumo') {
-                const section = output.closest('section');
-                if (section) section.style.display = valor.trim() ? 'block' : 'none';
-            }
+        });
+
+        if (campo === 'resumo') {
+            const outputResumo = document.getElementById('out-resumo');
+            const section = outputResumo ? outputResumo.closest('section') : null;
+            if (section) section.style.display = valor.trim() ? 'block' : 'none';
         }
     });
 }
