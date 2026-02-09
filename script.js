@@ -67,25 +67,35 @@ function mudarModelo(nomeDoModelo) {
 }
 function carregarFoto(event) {
     const output = document.getElementById('out-foto');
+    const container = document.querySelector('.foto-container');
     const arquivo = event.target.files[0];
     const reader = new FileReader();
 
     reader.onload = function() {
-        // Apenas define a imagem carregada. O CSS cuida de mostrar/esconder.
         output.src = reader.result; 
+        output.alt = "Foto de Perfil";
+        if (container) container.style.display = 'block';
     }
 
     if (arquivo) {
         reader.readAsDataURL(arquivo);
+    } else {
+        output.src = '';
+        output.alt = '';
+        if (container) container.style.display = 'none';
     }
 }
 
 // Garante que o espaço da foto seja exibido (ou não) de acordo com o CSS na carga inicial.
 document.addEventListener('DOMContentLoaded', () => {
     const foto = document.getElementById('out-foto');
-    if (foto) {
-        // Remove qualquer estilo 'display' inline para que as regras do CSS sejam aplicadas.
-        foto.style.display = ''; 
+    const container = document.querySelector('.foto-container');
+    
+    if (foto && container) {
+        if (!foto.getAttribute('src') || foto.getAttribute('src') === "") {
+            container.style.display = 'none';
+            foto.alt = '';
+        }
     }
 
     // Adiciona o listener para o input de foto, garantindo que o upload funcione.
