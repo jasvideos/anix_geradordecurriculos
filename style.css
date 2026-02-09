@@ -85,6 +85,15 @@ textarea { height: 80px; margin-top: 10px; resize: vertical; }
 .modelo-moderno .main-content, .modelo-vibrante .main-content {
     width: 100% !important;
     padding: 30px 40px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+/* Ajuste global para evitar que textos estourem containers */
+#resume-preview p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap; /* Mantém quebras de linha mas respeita a largura */
+    max-width: 100%;
 }
 
 .cargo-txt { color: #80cbc4; font-weight: bold; margin-bottom: 40px; }
